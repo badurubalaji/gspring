@@ -1,4 +1,4 @@
 = Restrictions =
 
   * No special module level annotations provided
-  * *@RemoteServiceRelativePath* annotations can be read only from super interfaces or class implementer
+  * {{{@RemoteServiceRelativePath}}} annotations can be read only from super interfaces or class implementer
