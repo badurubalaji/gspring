@@ -33,9 +33,11 @@ Typical usage is shown below
 }}}
 
 ===web.xml file===
+{{{
 	<!-- ... -->
 	<servlet-mapping>
 		<servlet-name>DispatcherServlet</servlet-name>
 		<url-pattern>*.gwt</url-pattern>
 	</servlet-mapping>
 <!-- ... -->
+}}}
