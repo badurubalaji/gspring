@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#Typical usage
 
 = Usage =
 
@@ -67,5 +67,3 @@ public class GreetingServiceImpl implements GreetingService {
 	}
 }
 }}}
-
-
