@@ -39,5 +39,5 @@ Typical usage is shown below
 		<servlet-name>DispatcherServlet</servlet-name>
 		<url-pattern>*.gwt</url-pattern>
 	</servlet-mapping>
-<!-- ... -->
+	<!-- ... -->
 }}}
