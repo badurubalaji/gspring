@@ -45,3 +45,27 @@ Typical usage is shown below
 	</servlet-mapping>
 	<!-- ... -->
 }}}
+
+
+===Service interface===
+{{{
+@RemoteServiceRelativePath("greet/greetingService.gwt")
+public interface GreetingService extends RemoteService {
+	String greetServer(String name) throws IllegalArgumentException;
+}
+}}}
+
+
+===Class implementer===
+{{{
+
+@Service("greetingService")
+public class GreetingServiceImpl implements GreetingService {
+	@Override
+	public String greetServer(String name) throws IllegalArgumentException {
+		return MessageFormat.format("Hello, {0}!", name);
+	}
+}
+}}}
+
+
