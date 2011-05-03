@@ -1,5 +1,3 @@
-#Typical usage
-
 = Usage =
 
 Typical usage is shown below
