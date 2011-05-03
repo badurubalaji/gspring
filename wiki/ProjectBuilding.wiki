@@ -1,0 +1,8 @@
+= Project Building=
+
+Project can be assembled using *maven2* build tool. It must previously installed.
+
+Command line:
+{{{
+mvn clean package
+}}}
