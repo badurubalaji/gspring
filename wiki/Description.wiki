@@ -1,0 +1,6 @@
+#summary One-sentence summary of this page.
+
+= Description =
+
+This project provides simple GWT-Spring MVC integration
+
