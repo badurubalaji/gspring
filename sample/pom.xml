@@ -60,7 +60,7 @@
 			<artifactId>gspring</artifactId>
 			<version>0.1-SNAPSHOT</version>
 			<scope>system</scope>
-			<systemPath>${basedir}/lib/gspring-0.1-SNAPSHOT.jar</systemPath>
+			<systemPath>${basedir}/src/main/webapp/lib/gspring-0.1-SNAPSHOT.jar</systemPath>
 		</dependency>
 	</dependencies>
 
