@@ -11,11 +11,10 @@
 		   http://www.springframework.org/schema/mvc
 		   http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
-	<mvc:annotation-driven />
-
 	<context:annotation-config />
 
-	<context:component-scan base-package="org.gspring.mvc.sample" />
+	<context:component-scan base-package="org.gspring">
+	</context:component-scan>
 
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
