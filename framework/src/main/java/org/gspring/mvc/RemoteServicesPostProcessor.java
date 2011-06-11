@@ -11,6 +11,12 @@ import org.springframework.util.Assert;
 
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
+/**
+ * Post processor to search beans and provide with Beans registry class
+ * 
+ * @author a.buzmakoff
+ * 
+ */
 class RemoteServicesPostProcessor implements BeanPostProcessor, Ordered {
 	private GwtServiceRegistryImpl gwtServiceRegistryImpl = new GwtServiceRegistryImpl();
 

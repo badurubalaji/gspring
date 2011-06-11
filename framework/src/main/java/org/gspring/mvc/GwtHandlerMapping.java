@@ -7,6 +7,12 @@ import org.springframework.util.Assert;
 import org.springframework.web.servlet.HandlerExecutionChain;
 import org.springframework.web.servlet.HandlerMapping;
 
+/**
+ * MVC Handler Mapping for GWT RPC calls
+ * 
+ * @author a.buzmakoff
+ *
+ */
 class GwtHandlerMapping implements HandlerMapping, Ordered, GwtServiceRegistryAware {
 	private static final String GWT_DEFAULT_EXT = ".gwt";
 

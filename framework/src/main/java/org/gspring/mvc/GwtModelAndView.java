@@ -12,6 +12,13 @@ import org.springframework.web.servlet.View;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
+/**
+ * MVC Model And View for GWT RPC calls.
+ * Contains and uses for rendering GWT RPC Servlet
+ * 
+ * @author a.buzmakoff
+ *
+ */
 public class GwtModelAndView extends ModelAndView {
 	private static final String DELEGATE_MODEL_KEY = "delegate";
 

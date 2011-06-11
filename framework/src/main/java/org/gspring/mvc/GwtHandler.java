@@ -2,6 +2,12 @@ package org.gspring.mvc;
 
 import org.springframework.util.Assert;
 
+/**
+ * MVC Handler for GWT RPC calls
+ * 
+ * @author a.buzmakoff
+ *
+ */
 class GwtHandler {
 	private Object delegate;
 	private final String requestURI;
