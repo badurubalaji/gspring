@@ -3,6 +3,12 @@ package org.gspring.mvc;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Implementation to register beans by realtive urls
+ * 
+ * @author a.buzmakoff
+ * 
+ */
 class GwtServiceRegistryImpl implements GwtServiceRegistry {
 	private Object lockForReplacingWithNewUrl = new Object();
 

@@ -9,6 +9,12 @@ import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.servlet.HandlerAdapter;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * MVC Handler Adapter for GWT RPC calls
+ * 
+ * @author a.buzmakoff
+ * 
+ */
 class GwtHandlerAdapter implements HandlerAdapter, Ordered, ServletContextAware {
 	private static final int NEVER_LAST_MODIFIED = -1;
 	private ServletContext servletContext;
@@ -20,7 +26,8 @@ class GwtHandlerAdapter implements HandlerAdapter, Ordered, ServletContextAware 
 
 	@Override
 	public boolean supports(Object handler) {
-		return handler instanceof GwtHandler;
+		final boolean filterOnlySupported = (handler instanceof GwtHandler);
+		return filterOnlySupported;
 	}
 
 	@Override
