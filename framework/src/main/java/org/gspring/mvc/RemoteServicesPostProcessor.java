@@ -1,9 +1,7 @@
 package org.gspring.mvc;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
@@ -20,7 +18,7 @@ class RemoteServicesPostProcessor implements BeanPostProcessor, Ordered {
 	public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
 		bindRegistryService(bean);
 
-		List<String> relativePaths = findRelativePaths(bean.getClass());
+		List<String> relativePaths = findRelativePathsFromSuperInterfacesOnly(bean.getClass());
 
 		checkForAlreadyRegisteredBeans(bean, relativePaths);
 
@@ -58,16 +56,11 @@ class RemoteServicesPostProcessor implements BeanPostProcessor, Ordered {
 		}
 	}
 
-	private static List<String> findRelativePaths(Class<?> beanClass) {
+	protected List<String> findRelativePathsFromSuperInterfacesOnly(Class<?> beanClass) {
 		List<String> annotations = new ArrayList<String>();
 
-		RemoteServiceRelativePath annotation = beanClass.getAnnotation(RemoteServiceRelativePath.class);
-		if (annotation != null) {
-			annotations.add(annotation.value());
-		}
-
-		for (Class<?> ifc : beanClass.getInterfaces()) {
-			annotation = AnnotationUtils.findAnnotation(ifc, RemoteServiceRelativePath.class);
+		for (Class<?> interfaces : beanClass.getInterfaces()) {
+			RemoteServiceRelativePath annotation = AnnotationUtils.findAnnotation(interfaces, RemoteServiceRelativePath.class);
 			if (annotation != null) {
 				annotations.add(annotation.value());
 			}
@@ -75,43 +68,5 @@ class RemoteServicesPostProcessor implements BeanPostProcessor, Ordered {
 
 		return annotations;
 
-	}
-
-	private class GwtServiceRegistryImpl implements GwtServiceRegistry {
-		private Object lockForReplacing = new Object();
-
-		private Map<String, Object> remoteServicesMapping = new HashMap<String, Object>();
-
-		@Override
-		public Object getDelegate(String url) {
-			if (beanAlreadyExists(url)) {
-				return remoteServicesMapping.get(url);
-			} else {
-				replace(url);
-				return getDelegate(url);
-			}
-		}
-
-		private boolean beanAlreadyExists(String relativeUrl) {
-			return remoteServicesMapping.containsKey(relativeUrl);
-		}
-
-		private void cacheBean(String url, Object bean) {
-			remoteServicesMapping.put(url, bean);
-		}
-
-		private void replace(String url) {
-			synchronized (lockForReplacing) {
-				for (String relativeUrl : remoteServicesMapping.keySet()) {
-					boolean matches = url.contains(relativeUrl);
-					if (matches) {
-						Object existingBean = remoteServicesMapping.remove(relativeUrl);
-						remoteServicesMapping.put(url, existingBean);
-						return;
-					}
-				}
-			}
-			throw new RuntimeException("Could not find for service for url: " + url);
-		}
 	}
 }
