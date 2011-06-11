@@ -38,7 +38,7 @@ class GwtHandlerMapping implements HandlerMapping, Ordered, GwtServiceRegistryAw
 			return null;
 		}
 
-		Object delegate = serviceRegistry.getDelegate(requestURI);
+		Object delegate = serviceRegistry.retrieveDelegate(requestURI);
 
 		Assert.notNull(delegate, "No such URI registered");
 

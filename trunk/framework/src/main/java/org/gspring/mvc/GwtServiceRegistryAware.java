@@ -1,5 +1,5 @@
 package org.gspring.mvc;
 
 interface GwtServiceRegistryAware {
-	void setServiceRegistry(GwtServiceRegistry serviceRegistry);
+	public void setServiceRegistry(GwtServiceRegistry serviceRegistry);
 }
