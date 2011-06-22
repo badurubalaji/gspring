@@ -48,7 +48,7 @@ class GwtHandlerMapping implements HandlerMapping, Ordered, GwtServiceRegistryAw
 
 		Assert.notNull(delegate, "No such URI registered");
 
-		return new HandlerExecutionChain(new GwtHandler(delegate, requestURI));
+		return new HandlerExecutionChain(delegate);
 	}
 
 }

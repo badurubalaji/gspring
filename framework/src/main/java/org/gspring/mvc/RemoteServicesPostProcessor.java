@@ -3,12 +3,15 @@ package org.gspring.mvc;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.util.Assert;
 
+import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 /**
@@ -18,6 +21,8 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
  * 
  */
 class RemoteServicesPostProcessor implements BeanPostProcessor, Ordered {
+    private final Log logger = LogFactory.getLog(RemoteServicesPostProcessor.class);
+
 	private GwtServiceRegistryImpl gwtServiceRegistryImpl = new GwtServiceRegistryImpl();
 
 	@Override
@@ -65,14 +70,38 @@ class RemoteServicesPostProcessor implements BeanPostProcessor, Ordered {
 	protected List<String> findRelativePathsFromSuperInterfacesOnly(Class<?> beanClass) {
 		List<String> annotations = new ArrayList<String>();
 
-		for (Class<?> interfaces : beanClass.getInterfaces()) {
-			RemoteServiceRelativePath annotation = AnnotationUtils.findAnnotation(interfaces, RemoteServiceRelativePath.class);
-			if (annotation != null) {
-				annotations.add(annotation.value());
-			}
+		for (Class<?> intrface : beanClass.getInterfaces()) {
+			scanAndProcessInterface(intrface, annotations);
 		}
 
 		return annotations;
-
 	}
+
+    private void scanAndProcessInterface(Class<?> intrface, List<String> annotations) {
+        RemoteServiceRelativePath annotation = AnnotationUtils.findAnnotation(intrface, RemoteServiceRelativePath.class);
+
+        if (annotation == null) {
+            return;
+        }
+
+        if(doesExtendRemoteService(intrface)) {
+            annotations.add(annotation.value());
+        } else {
+            logger.warn("Be aware that annotated with [" + RemoteServiceRelativePath.class.getSimpleName() +
+                    "] interface -" + intrface.getClass().getSimpleName() +
+                    "] does not extend required [" + RemoteService.class.getSimpleName() + 
+                    "] and thus is skipped");
+        }
+    }
+
+    private boolean doesExtendRemoteService(Class<?> intrface) {
+        for (Class<?> interf : intrface.getInterfaces()) {
+            if (interf.equals(RemoteService.class)) {
+                return true;
+            } else {
+                return doesExtendRemoteService(interf);               
+            }
+        }
+        return false;
+    }
 }
