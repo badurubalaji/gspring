@@ -9,6 +9,8 @@ import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.servlet.HandlerAdapter;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gwt.user.client.rpc.RemoteService;
+
 /**
  * MVC Handler Adapter for GWT RPC calls
  * 
@@ -26,15 +28,13 @@ class GwtHandlerAdapter implements HandlerAdapter, Ordered, ServletContextAware 
 
 	@Override
 	public boolean supports(Object handler) {
-		final boolean filterOnlySupported = (handler instanceof GwtHandler);
+		final boolean filterOnlySupported = (handler instanceof RemoteService);
 		return filterOnlySupported;
 	}
 
 	@Override
 	public ModelAndView handle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-		GwtHandler gwtHandler = (GwtHandler) handler;
-
-		return new GwtModelAndView(this.servletContext, gwtHandler.getDelegate());
+		return new GwtModelAndView(this.servletContext, handler);
 	}
 
 	@Override
