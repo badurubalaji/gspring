@@ -21,16 +21,6 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
  * 
  */
 class GwtHandlerMapping extends AbstractDetectingUrlHandlerMapping implements HandlerMapping, Ordered {
-	private static final String GWT_DEFAULT_EXT = ".gwt";
-
-	public String extension = GWT_DEFAULT_EXT;
-
-	public void setExtension(String extension) {
-		Assert.hasText(extension);
-
-		this.extension = extension;
-	}
-
 	@Override
 	protected String[] determineUrlsForHandler(String beanName) {
 		try {
