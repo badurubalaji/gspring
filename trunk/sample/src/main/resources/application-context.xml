@@ -14,8 +14,6 @@
 	<context:component-scan base-package="org.gspring">
 	</context:component-scan>
 
-	<bean class="org.gspring.mvc.RemoteServicesPostProcessor" />
-
 	<bean class="org.gspring.mvc.GwtHandlerMapping" />
 
 	<bean class="org.gspring.mvc.GwtHandlerAdapter" />
