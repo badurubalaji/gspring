@@ -1,10 +1,12 @@
 package org.gspring.mvc;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.core.Ordered;
+import org.springframework.web.context.ServletConfigAware;
 import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.servlet.HandlerAdapter;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,9 +19,10 @@ import com.google.gwt.user.client.rpc.RemoteService;
  * @author a.buzmakoff
  * 
  */
-class GwtHandlerAdapter implements HandlerAdapter, Ordered, ServletContextAware {
+class GwtHandlerAdapter implements HandlerAdapter, Ordered, ServletContextAware, ServletConfigAware {
 	private static final int NEVER_LAST_MODIFIED = -1;
 	private ServletContext servletContext;
+	private ServletConfig servletConfig;
 
 	@Override
 	public int getOrder() {
@@ -34,7 +37,7 @@ class GwtHandlerAdapter implements HandlerAdapter, Ordered, ServletContextAware 
 
 	@Override
 	public ModelAndView handle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-		return new GwtModelAndView(this.servletContext, handler);
+		return new GwtModelAndView(servletContext, servletConfig, handler);
 	}
 
 	@Override
@@ -45,7 +48,10 @@ class GwtHandlerAdapter implements HandlerAdapter, Ordered, ServletContextAware 
 	@Override
 	public void setServletContext(ServletContext servletContext) {
 		this.servletContext = servletContext;
-
 	}
 
+	@Override
+	public void setServletConfig(ServletConfig servletConfig) {
+		this.servletConfig = servletConfig;
+	}
 }
