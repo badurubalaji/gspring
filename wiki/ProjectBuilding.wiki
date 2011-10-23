@@ -1,6 +1,6 @@
 = Project Building=
 
-Project can be assembled using *maven2* build tool. It must previously installed.
+Project can be assembled using *maven2* build tool. It must be previously installed.
 
 Command line:
 {{{
