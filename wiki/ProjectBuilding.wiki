@@ -1,8 +1,17 @@
-= Project Building=
+= How to build=
 
 Project can be assembled using *maven2* build tool. It must be previously installed.
 
 Command line:
 {{{
 mvn clean package
+}}}
+
+
+= How to run =
+
+1. Build and copy WAR file to any servlet container
+2. Simply run command line
+{{{
+mvn jetty:run-war
 }}}
