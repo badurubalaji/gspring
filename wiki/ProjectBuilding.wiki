@@ -10,8 +10,11 @@ mvn clean package
 
 = How to run =
 
-#1 Build and copy WAR file to any servlet container
-#2 Simply run command line
+Build and copy WAR file to any servlet container
+
+or
+
+Simply run command line
 {{{
 mvn jetty:run-war
 }}}
