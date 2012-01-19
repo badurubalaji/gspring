@@ -1,3 +1,14 @@
+= How to checkout code =
+
+Source code can be checked out using 
+
+http://code.google.com/p/gspring/source/checkout
+
+= How to view code=
+Source can be viewed using
+
+http://code.google.com/p/gspring/source/browse
+
 = How to build=
 
 Project can be assembled using *maven2* build tool. It must be previously installed.
