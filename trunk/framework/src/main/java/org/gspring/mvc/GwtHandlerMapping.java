@@ -6,6 +6,11 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.BeanNotOfRequiredTypeException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.Cache;
+import org.springframework.cache.Cache.ValueWrapper;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.support.NoOpCacheManager;
 import org.springframework.util.Assert;
 import org.springframework.web.servlet.handler.AbstractDetectingUrlHandlerMapping;
 
@@ -19,6 +24,9 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
  * 
  */
 class GwtHandlerMapping extends AbstractDetectingUrlHandlerMapping {
+	@Autowired(required = false)
+	private CacheManager cacheManager;
+
 	@Override
 	protected String[] determineUrlsForHandler(String beanName) {
 		try {
@@ -63,11 +71,32 @@ class GwtHandlerMapping extends AbstractDetectingUrlHandlerMapping {
 
 	@Override
 	protected Object lookupHandler(String urlPath, HttpServletRequest request) throws Exception {
+		ValueWrapper cached = getCache().get(urlPath);
+		if (cached != null) {
+			return cached.get();
+		}
+
 		for (String relativePath : getHandlerMap().keySet()) {
 			if (urlPath.endsWith(relativePath)) {
-				return getHandlerMap().get(relativePath);
+				Object value = getHandlerMap().get(relativePath);
+
+				getCache().put(urlPath, value);
+
+				return value;
 			}
 		}
+
 		return null;
+	}
+
+	public void afterPropertiesSet() {
+		if (cacheManager == null) {
+			logger.info("No cache manager is set, using No Pperation Cache");
+			cacheManager = new NoOpCacheManager();
+		}
+	}
+
+	private Cache getCache() {
+		return cacheManager.getCache(getClass().getCanonicalName());
 	}
 }
