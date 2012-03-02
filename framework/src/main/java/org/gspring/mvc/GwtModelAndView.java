@@ -14,8 +14,8 @@ import org.springframework.web.servlet.View;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 /**
- * MVC Model And View for GWT RPC calls. Contains and uses for rendering GWT RPC
- * Servlet
+ * MVC Model And View for GWT RPC calls.
+ * Used to render GWT RPC Servlet response
  * 
  * @author a.buzmakoff
  * 
