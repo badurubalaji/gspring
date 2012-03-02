@@ -25,7 +25,7 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
  */
 class GwtHandlerMapping extends AbstractDetectingUrlHandlerMapping {
 	@Autowired(required = false)
-	private CacheManager cacheManager;
+	private CacheManager cacheManager = new NoOpCacheManager();
 
 	@Override
 	protected String[] determineUrlsForHandler(String beanName) {
@@ -89,14 +89,8 @@ class GwtHandlerMapping extends AbstractDetectingUrlHandlerMapping {
 		return null;
 	}
 
-	public void afterPropertiesSet() {
-		if (cacheManager == null) {
-			logger.info("No cache manager is set, using No Pperation Cache");
-			cacheManager = new NoOpCacheManager();
-		}
-	}
-
 	private Cache getCache() {
-		return cacheManager.getCache(getClass().getCanonicalName());
+		final String name = getClass().getCanonicalName();
+		return cacheManager.getCache(name);
 	}
 }
