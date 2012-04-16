@@ -5,12 +5,13 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.beans.factory.BeanNotOfRequiredTypeException;
+import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.Cache;
 import org.springframework.cache.Cache.ValueWrapper;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.support.NoOpCacheManager;
+import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 import org.springframework.web.servlet.handler.AbstractDetectingUrlHandlerMapping;
 
@@ -23,25 +24,29 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
  * @author a.buzmakoff
  * 
  */
+@Component
 class GwtHandlerMapping extends AbstractDetectingUrlHandlerMapping {
 	@Autowired(required = false)
 	private CacheManager cacheManager = new NoOpCacheManager();
 
 	@Override
 	protected String[] determineUrlsForHandler(String beanName) {
-		try {
-			RemoteService bean = getApplicationContext().getBean(beanName, RemoteService.class);
+		BeanFactory context = getApplicationContext();
 
-			checkInheritsRemoteServiceDirectly(bean);
-
-			List<String> relativePaths = new ArrayList<String>();
-
-			findRelativePaths(bean.getClass(), relativePaths);
-
-			return relativePaths.toArray(new String[0]);
-		} catch (BeanNotOfRequiredTypeException e) {
+		if (!context.isTypeMatch(beanName, RemoteService.class)) {
 			return null;
 		}
+
+		RemoteService bean = context.getBean(beanName, RemoteService.class);
+
+		checkInheritsRemoteServiceDirectly(bean);
+
+		List<String> relativePaths = new ArrayList<String>();
+
+		findRelativePaths(bean.getClass(), relativePaths);
+
+		return relativePaths.toArray(new String[0]);
+
 	}
 
 	private void findRelativePaths(Class<?> beanClass, List<String> relativePaths) {
