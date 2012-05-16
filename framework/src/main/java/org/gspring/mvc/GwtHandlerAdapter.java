@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.ServletConfigAware;
 import org.springframework.web.context.ServletContextAware;
@@ -21,15 +22,11 @@ import com.google.gwt.user.client.rpc.RemoteService;
  * 
  */
 @Component
-class GwtHandlerAdapter implements HandlerAdapter, Ordered, ServletContextAware, ServletConfigAware {
+@Order(Ordered.HIGHEST_PRECEDENCE)
+class GwtHandlerAdapter implements HandlerAdapter, ServletContextAware, ServletConfigAware {
 	private static final int NEVER_LAST_MODIFIED = -1;
 	private ServletContext servletContext;
 	private ServletConfig servletConfig;
-
-	@Override
-	public int getOrder() {
-		return HIGHEST_PRECEDENCE;
-	}
 
 	@Override
 	public boolean supports(Object handler) {
