@@ -40,6 +40,7 @@ See the sample described above.
 
 	<context:annotation-config />
 
+	<!-- IMPORTANT PART -->
         <import resource="classpath:/gspring-context.xml" />
 
 	<!-- Optional: could be used by gspring if declared -->
