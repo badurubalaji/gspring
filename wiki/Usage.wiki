@@ -43,9 +43,9 @@ See the sample described above.
 	<!-- IMPORTANT PART -->
         <import resource="classpath:/gspring-context.xml" />
 
-	<!-- Optional: could be used by gspring if declared -->
-	<bean id="cacheManager"
-		class="org.springframework.cache.concurrent.ConcurrentMapCacheManager" />
+	<!-- OPTIONAL: can be used by gspring if declared -->
+	<bean id="cacheManager" class="org.springframework.cache.concurrent.ConcurrentMapCacheManager" />
+	
 	<!-- ANY DECLARATIONS -->
 
 </beans>
