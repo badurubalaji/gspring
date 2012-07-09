@@ -1,7 +1,5 @@
 = How to checkout code =
 
-Source code can be checked out using 
-
 http://code.google.com/p/gspring/source/checkout
 
 = How to view code=
