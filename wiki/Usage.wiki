@@ -8,7 +8,7 @@ In order to try this integration the standard (modified server part) GWT "Hello 
 Make sure port 8080 is free
 
 3.
-Run
+Run from the root of sample code
 {{{
 mvn clean package jetty:run-war
 }}}
