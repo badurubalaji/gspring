@@ -1,4 +1,0 @@
-= Restrictions =
-
-  * No special module level annotations provided
-  * {{{@RemoteServiceRelativePath}}} annotations can be read only from super interfaces and that interfaces must extend {{{com.google.gwt.user.client.rpc.RemoteService}}} as required by GWT
