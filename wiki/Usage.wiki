@@ -1,8 +1,23 @@
 = Usage =
 
-In order to try integration build and run the sample from http://code.google.com/p/gspring/source/browse/#svn%2Ftrunk%2Fsample
+In order to try this integration standard modified (server part) GWT "Hello World" application bundled with Eclipse plugin can be built and run.
 
-Typical usage is shown below
+# Checkout http://code.google.com/p/gspring/source/browse/#svn%2Ftrunk%2Fsample
+
+# 
+Run
+{{{
+mvn clean package
+}}}
+
+#
+Run
+{{{
+mvn jetty:run-war
+}}}
+
+
+Typical usage of this integration in projects is shown below
 
 ===Spring context file===
 {{{
