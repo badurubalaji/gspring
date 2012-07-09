@@ -20,7 +20,7 @@ mvn clean package jetty:run-war
 
 See the sample described above.
 
-===Spring context file===
+===Sample Spring context file===
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 
