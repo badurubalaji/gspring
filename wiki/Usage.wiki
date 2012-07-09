@@ -1,5 +1,7 @@
 = Usage =
 
+In order to try integration build and run the sample from http://code.google.com/p/gspring/source/browse/#svn%2Ftrunk%2Fsample
+
 Typical usage is shown below
 
 ===Spring context file===
