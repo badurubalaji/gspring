@@ -1,6 +1,6 @@
-= Usage =
+= Running the sample of usage =
 
-In order to try this integration standard modified (server part) GWT "Hello World" application bundled with Eclipse plugin can be built and run.
+In order to try this integration the standard (modified server part) GWT "Hello World" application bundled with Eclipse plugin can be built and run:
 
 1. Checkout http://code.google.com/p/gspring/source/browse/#svn%2Ftrunk%2Fsample
 
@@ -17,7 +17,9 @@ mvn jetty:run-war
 }}}
 
 
-Typical usage of this integration in projects is shown below
+= Typical Usage in project =
+
+See the sample described above.
 
 ===Spring context file===
 {{{
@@ -37,21 +39,14 @@ Typical usage of this integration in projects is shown below
 
 	<context:annotation-config />
 
-	<context:component-scan base-package="org.gspring.mvc.sample" />
+        <import resource="classpath:/gspring-context.xml" />
 
-	<bean id="viewResolver"
-		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-		<property name="viewClass"
-			value="org.springframework.web.servlet.view.JstlView" />
-		<property name="prefix" value="/WEB-INF/jsp/" />
-		<property name="suffix" value=".jsp" />
-	</bean>
-
-	<!-- Optional: used by gspring -->
+	<!-- Optional: could be used by gspring if declared -->
 	<bean id="cacheManager"
 		class="org.springframework.cache.concurrent.ConcurrentMapCacheManager" />
 </beans>
 
+        <!-- ANY DECLARATIONS -->
 
 }}}
 
