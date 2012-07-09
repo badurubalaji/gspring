@@ -65,7 +65,7 @@ See the sample described above.
 }}}
 
 
-===Service interface===
+===Sample Service interface===
 {{{
 @RemoteServiceRelativePath("greet/greetingService.gwt")
 public interface GreetingService extends RemoteService {
@@ -74,7 +74,7 @@ public interface GreetingService extends RemoteService {
 }}}
 
 
-===Class implementer===
+===Sample Class implementer===
 {{{
 
 @Service("greetingService")
