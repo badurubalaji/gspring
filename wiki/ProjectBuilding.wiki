@@ -1,11 +1,11 @@
-= How to checkout code =
+= How to checkout framework and sample of usage =
 
 http://code.google.com/p/gspring/source/checkout
 
-= How to view code=
+= How to view framework and sample of usage =
 http://code.google.com/p/gspring/source/browse
 
-= How to build=
+= How to build source code =
 
 Project can be assembled using *maven* 2 (http://maven.apache.org/) 
 
