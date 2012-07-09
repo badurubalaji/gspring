@@ -57,6 +57,21 @@ See the sample described above.
 ===web.xml file===
 {{{
 	<!-- ... -->
+
+	<!-- Servlet can be mapped also as
+	<servlet-mapping>
+		<servlet-name>DispatcherServlet</servlet-name>
+		<url-pattern>*</url-pattern>
+	</servlet-mapping>
+	because handler mapping inspects all services (beans) declared in application context
+	and inherited from com.google.gwt.user.client.rpc.RemoteService 
+	for value provided by
+	com.google.gwt.user.client.rpc.RemoteServiceRelativePath annotation under this interface
+	(inheriting this interface with such annotation is GWT requirement)
+	
+
+	Providing mapping as *.gwt allows simple optimizations
+	-->
 	<servlet-mapping>
 		<servlet-name>DispatcherServlet</servlet-name>
 		<url-pattern>*.gwt</url-pattern>
