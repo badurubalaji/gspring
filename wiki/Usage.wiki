@@ -5,16 +5,15 @@ In order to try this integration the standard (modified server part) GWT "Hello 
 1. Checkout http://code.google.com/p/gspring/source/browse/#svn%2Ftrunk%2Fsample
 
 2.
-Run
-{{{
-mvn clean package
-}}}
+Make sure port 8080 is free
 
 3.
 Run
 {{{
-mvn jetty:run-war
+mvn clean package jetty:run-war
 }}}
+
+4. Open http://localhost:8080/gspring
 
 
 = Typical Usage in project =
