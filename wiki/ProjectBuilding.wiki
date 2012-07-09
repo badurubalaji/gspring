@@ -18,14 +18,3 @@ Command line:
 mvn clean package
 }}}
 
-
-= How to run =
-
-Build and copy WAR file to any servlet container
-
-or
-
-Simply run command line
-{{{
-mvn jetty:run-war
-}}}
