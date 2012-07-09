@@ -9,7 +9,7 @@ http://code.google.com/p/gspring/source/browse
 
 = How to build=
 
-Project can be assembled using *maven* ver. 2 (http://maven.apache.org/) 
+Project can be assembled using *maven* 2 (http://maven.apache.org/) 
 
 Command line:
 {{{
