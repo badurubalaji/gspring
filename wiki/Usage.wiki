@@ -2,7 +2,8 @@
 
 In order to try this integration the standard (modified server part) GWT "Hello World" application bundled with Eclipse plugin can be built and run:
 
-1. Checkout http://code.google.com/p/gspring/source/browse/#svn%2Ftrunk%2Fsample
+1. Checkout sample source for RPC approach
+http://code.google.com/p/gspring/source/browse/#svn%2Ftrunk%2Fsample%2Frpc
 
 2.
 Make sure port 8080 is free
