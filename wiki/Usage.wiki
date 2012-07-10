@@ -59,7 +59,8 @@ See the sample described above.
 {{{
 	<!--
 		Providing mapping as *.gwt allows simple optimizations 
-		(if all RemoteService implementers have URL ending with ".gwt")
+		if all RemoteService services have URL ending with ".gwt"
+		(URL is placed in @RemoteServiceRelativePath)
 	-->
 	<servlet-mapping>
 		<servlet-name>DispatcherServlet</servlet-name>
