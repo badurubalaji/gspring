@@ -1,13 +1,17 @@
-#summary One-sentence summary of this page.
+= Running the sample of usage =
 
-= Introduction =
+In order to try this integration the standard (modified server part) GWT "Hello World" application bundled with Eclipse plugin can be built and run:
 
-Add your content here.
+1. Checkout sample source for RPC approach
+http://code.google.com/p/gspring/source/browse/#svn%2Ftrunk%2Fsample%2Frpc
 
+2.
+Make sure port 8080 is free
 
-= Details =
+3.
+Run from the root of sample code
+{{{
+mvn clean package jetty:run-war
+}}}
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+4. Open http://localhost:8080/gspring
