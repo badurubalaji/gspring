@@ -58,7 +58,8 @@ See the sample described above.
 ===web.xml file===
 {{{
 	<!--
-		Providing mapping as *.gwt allows simple optimizations
+		Providing mapping as *.gwt allows simple optimizations 
+		(if all RemoteService implementers have URL ending with ".gwt")
 	-->
 	<servlet-mapping>
 		<servlet-name>DispatcherServlet</servlet-name>
@@ -84,7 +85,7 @@ See the sample described above.
 }}}
 
 
-===Sample Service interface===
+===Sample RemoteService Service interface===
 {{{
 @RemoteServiceRelativePath("greet/greetingService.gwt")
 public interface GreetingService extends RemoteService {
@@ -93,7 +94,7 @@ public interface GreetingService extends RemoteService {
 }}}
 
 
-===Sample Class implementer===
+===Sample RemoteService Class implementer===
 {{{
 
 @Service("greetingService")
