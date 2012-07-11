@@ -9,7 +9,20 @@ http://code.google.com/p/gspring/source/browse
 
 Project can be assembled using *maven* 2 (http://maven.apache.org/) 
 
-Command line:
+There three options to build.
+Each coresponds appropriate maven profile.
+
+Assemble for RPC approach 
 {{{
-mvn clean package
+mvn clean package -Prpc
+}}}
+
+Assemble for RequestFactory approach 
+{{{
+mvn clean package -Prf
+}}}
+
+Assemble for both approaches
+{{{
+mvn clean package -Prf
 }}}
