@@ -11,7 +11,7 @@ Make sure port 8080 is free
 3.
 Run from the root of sample code
 {{{
-mvn clean package jetty:run-war
+mvn jetty:run-war
 }}}
 
 4. Open http://localhost:8080/gspring
