@@ -19,7 +19,7 @@ mvn jetty:run-war
 4. Open http://localhost:8080/rpc-sample
 
 ==Request Factory approach==
-1. Find the "DynaTableRf" sample in GWT SDK for 2.5 version (2.5 uses maven to assemble) 
+1. Find the "DynaTableRf" sample in GWT SDK for 2.5 version (2.5 uses maven to assemble) by http://google-web-toolkit.googlecode.com/svn/releases/2.5/samples/dynatablerf
 
 2. Remove old servlet declaration in web.xml for RequestFactory calls, add required libraries and make other changes according to your application (previous sample could be taken as template), replace old servlet mapping with new one
 {{{
