@@ -84,3 +84,25 @@ public class GreetingServiceImpl implements GreetingService {
 	}
 }
 }}}
+
+
+= Typical RequestFactory approach usage =
+
+==Sample Spring context file==
+Can be the same as in the sample above
+
+==web.xml file==
+{{{
+	<servlet-mapping>
+		<servlet-name>DispatcherServlet</servlet-name>
+		<!-- Standard URL -->
+		<url-pattern>/gwtRequest</url-pattern>
+	</servlet-mapping>
+
+	<!-- 
+		In case the URL needs to be changed - see below how to customize	
+	-->
+}}}
+
+
+= Customizing Typical RequestFactory approach usage =
