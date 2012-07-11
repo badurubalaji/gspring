@@ -111,7 +111,7 @@ If
 1. URL for mapping (say it would be *anyCustomUrl*)
 2. Custom com.google.web.bindery.requestfactory.server.ExceptionHandler and com.google.web.bindery.requestfactory.server.ServiceLayerDecorator
 should be provided Spring context could be extended:
-
+{{{
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
