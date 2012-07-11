@@ -23,6 +23,8 @@ import java.util.List;
  */
 @Component
 class RpcGwtHandlerMapping extends AbstractDetectingUrlHandlerMapping {
+    public static final String DELEGATE_MODEL_KEY = "delegate";
+
     @Autowired(required = false)
     private CacheManager cacheManager = new NoOpCacheManager();
 
