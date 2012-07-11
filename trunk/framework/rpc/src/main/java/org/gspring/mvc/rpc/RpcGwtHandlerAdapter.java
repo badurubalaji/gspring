@@ -15,6 +15,7 @@ import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Collections;
 
 /**
  * MVC Handler Adapter for GWT RPC calls
@@ -30,7 +31,7 @@ class RpcGwtHandlerAdapter implements HandlerAdapter, ServletContextAware, Servl
     private ServletConfig servletConfig;
 
     @Resource
-    private View gwtRpcView;
+    private View rpcGwtView;
 
     @Override
     public boolean supports(Object handler) {
@@ -39,7 +40,10 @@ class RpcGwtHandlerAdapter implements HandlerAdapter, ServletContextAware, Servl
 
     @Override
     public ModelAndView handle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        return new RpcGwtModelAndView(gwtRpcView, handler);
+        final ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addAllObjects(Collections.singletonMap(RpcGwtHandlerMapping.DELEGATE_MODEL_KEY, handler));
+        modelAndView.setView(rpcGwtView);
+        return modelAndView;
     }
 
     @Override
