@@ -1,6 +1,6 @@
-= Typical Usage in project =
+= Typical RPC approach usage =
 
-See the sample described above.
+See the sample provided in http://code.google.com/p/gspring/source/browse/#svn%2Ftrunk%2Fsample%2Frpc.
 
 ===Sample Spring context file===
 {{{
@@ -31,9 +31,6 @@ See the sample described above.
 	<!-- ANY DECLARATIONS -->
 
 </beans>
-
-        
-
 }}}
 
 ===web.xml file===
