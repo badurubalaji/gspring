@@ -4,8 +4,6 @@ import com.google.gwt.user.client.rpc.RemoteService;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.ServletConfigAware;
-import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.servlet.HandlerAdapter;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
@@ -24,11 +22,8 @@ import java.util.Collections;
  */
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
-class RpcGwtHandlerAdapter implements HandlerAdapter, ServletContextAware, ServletConfigAware {
+class RpcGwtHandlerAdapter implements HandlerAdapter {
     private static final int NEVER_LAST_MODIFIED = -1;
-
-    private ServletContext servletContext;
-    private ServletConfig servletConfig;
 
     @Resource
     private View rpcGwtView;
@@ -49,15 +44,5 @@ class RpcGwtHandlerAdapter implements HandlerAdapter, ServletContextAware, Servl
     @Override
     public long getLastModified(HttpServletRequest request, Object handler) {
         return NEVER_LAST_MODIFIED;
-    }
-
-    @Override
-    public void setServletContext(ServletContext servletContext) {
-        this.servletContext = servletContext;
-    }
-
-    @Override
-    public void setServletConfig(ServletConfig servletConfig) {
-        this.servletConfig = servletConfig;
     }
 }
