@@ -2,7 +2,7 @@
 
 See the sample provided in http://code.google.com/p/gspring/source/browse/#svn%2Ftrunk%2Fsample%2Frpc.
 
-===Sample Spring context file===
+==Sample Spring context file==
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 
@@ -33,7 +33,7 @@ See the sample provided in http://code.google.com/p/gspring/source/browse/#svn%2
 </beans>
 }}}
 
-===web.xml file===
+==web.xml file==
 {{{
 	<!--
 		Providing mapping as *.gwt allows simple optimizations 
@@ -64,7 +64,7 @@ See the sample provided in http://code.google.com/p/gspring/source/browse/#svn%2
 }}}
 
 
-===Sample RemoteService Service interface===
+==Sample RemoteService Service interface==
 {{{
 @RemoteServiceRelativePath("greet/greetingService.gwt")
 public interface GreetingService extends RemoteService {
@@ -73,7 +73,7 @@ public interface GreetingService extends RemoteService {
 }}}
 
 
-===Sample RemoteService Class implementer===
+==Sample RemoteService Class implementer==
 {{{
 
 @Service("greetingService")
