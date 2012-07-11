@@ -19,6 +19,10 @@ class RfGwtHandlerMapping implements HandlerMapping {
 
     public RfGwtHandlerMapping(String url) {
         this.url = url;
+
+        if(!this.url.startsWith("/")) {
+            this.url = "/" + this.url;
+        }
     }
 
     @Override

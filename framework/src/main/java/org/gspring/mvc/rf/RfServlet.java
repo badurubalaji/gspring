@@ -1,6 +1,8 @@
 package org.gspring.mvc.rf;
 
+import com.google.web.bindery.requestfactory.server.ExceptionHandler;
 import com.google.web.bindery.requestfactory.server.RequestFactoryServlet;
+import com.google.web.bindery.requestfactory.server.ServiceLayerDecorator;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -15,7 +17,11 @@ class RfServlet extends RequestFactoryServlet {
     private ServletConfig servletConfig;
 
     public RfServlet() {
+        super();
+    }
 
+    public RfServlet(ExceptionHandler exceptionHandler, ServiceLayerDecorator... serviceDecorators) {
+        super(exceptionHandler, serviceDecorators);
     }
 
     public void render(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {

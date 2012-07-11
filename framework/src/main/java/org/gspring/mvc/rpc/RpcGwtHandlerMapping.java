@@ -2,6 +2,8 @@ package org.gspring.mvc.rpc;
 
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.Cache;
@@ -23,6 +25,8 @@ import java.util.List;
  */
 @Component
 class RpcGwtHandlerMapping extends AbstractDetectingUrlHandlerMapping {
+    protected final Log logger = LogFactory.getLog(getClass());
+
     public static final String DELEGATE_MODEL_KEY = "delegate";
 
     @Autowired(required = false)
