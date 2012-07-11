@@ -14,4 +14,4 @@ Run from the root of sample code
 mvn jetty:run-war
 }}}
 
-4. Open http://localhost:8080/gspring
+4. Open http://localhost:8080/rpc-sample
