@@ -31,6 +31,10 @@ class RpcGwtView implements View, ServletContextAware {
                 return servletContext;
             }
 
+            @Override
+            public String getServletName() {
+                return RemoteServiceServlet.class.getName();
+            }
         };
 
         rpcServlet.doPost(request, response);
