@@ -9,7 +9,7 @@ http://code.google.com/p/gspring/source/browse
 
 Project can be assembled using *maven* 2 (http://maven.apache.org/) 
 
-There three options to build.
+There are three options to build.
 Each coresponds appropriate maven profile.
 See maven profiles in pom.xml for details.
 
