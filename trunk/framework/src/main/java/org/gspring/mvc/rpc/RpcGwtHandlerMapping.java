@@ -4,19 +4,20 @@ import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.aop.support.AopUtils;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.Cache;
 import org.springframework.cache.Cache.ValueWrapper;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.support.NoOpCacheManager;
+import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.stereotype.Component;
-import org.springframework.util.Assert;
 import org.springframework.web.servlet.handler.AbstractDetectingUrlHandlerMapping;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * MVC Handler Mapping for GWT RPC calls
@@ -42,39 +43,37 @@ class RpcGwtHandlerMapping extends AbstractDetectingUrlHandlerMapping {
 
         RemoteService bean = context.getBean(beanName, RemoteService.class);
 
-        checkInheritsRemoteServiceDirectly(bean);
-
-        List<String> relativePaths = new ArrayList<String>();
-
-        findRelativePaths(bean.getClass(), relativePaths);
+        Set<String> relativePaths = findRelativePaths(bean);
 
         return relativePaths.toArray(new String[0]);
 
     }
 
-    private void findRelativePaths(Class<?> beanClass, List<String> relativePaths) {
+    private Set<String> findRelativePaths(RemoteService bean) {
+        if (AopUtils.isCglibProxy(bean)) {
+            return doFindRelativePaths(AopUtils.getTargetClass(bean));
+        } else {
+            return doFindRelativePaths(bean.getClass());
+        }
+    }
+
+    private Set<String> doFindRelativePaths(Class<?> beanClass) {
+        Set<String> paths = new HashSet<String>();
+
         for (Class<?> interf : beanClass.getInterfaces()) {
-            if (isRemoteServiceType(interf)) {
+            if (RemoteService.class.equals(interf)) {
                 RemoteServiceRelativePath relativePathAnnotation = beanClass.getAnnotation(RemoteServiceRelativePath.class);
                 if (relativePathAnnotation != null) {
-                    relativePaths.add(relativePathAnnotation.value());
+                    paths.add(relativePathAnnotation.value());
                 } else {
                     logger.warn("Bean of type [" + beanClass + "] does not have annotation of type [" + RemoteServiceRelativePath.class + "] and is skipped");
                 }
             } else {
-                findRelativePaths(interf, relativePaths);
+                paths.addAll(doFindRelativePaths(interf));
             }
         }
-    }
 
-    private void checkInheritsRemoteServiceDirectly(Object bean) {
-        for (Class<?> interfce : bean.getClass().getInterfaces()) {
-            Assert.isTrue(!isRemoteServiceType(interfce), "Bean [" + (Class<?>) bean.getClass() + "] inherits [" + RemoteService.class + "] directly");
-        }
-    }
-
-    private boolean isRemoteServiceType(Class<?> interf) {
-        return RemoteService.class.equals(interf);
+        return paths;
     }
 
     @Override
