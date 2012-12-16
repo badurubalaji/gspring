@@ -25,7 +25,7 @@ import java.util.Set;
  * @author a.buzmakoff
  */
 @Component
-class RpcGwtHandlerMapping extends AbstractDetectingUrlHandlerMapping {
+public class RpcGwtHandlerMapping extends AbstractDetectingUrlHandlerMapping {
     protected final Log logger = LogFactory.getLog(getClass());
 
     public static final String DELEGATE_MODEL_KEY = "delegate";
@@ -77,7 +77,7 @@ class RpcGwtHandlerMapping extends AbstractDetectingUrlHandlerMapping {
     }
 
     @Override
-    protected Object lookupHandler(String urlPath, HttpServletRequest request) throws Exception {
+    public Object lookupHandler(String urlPath, HttpServletRequest request) throws Exception {
         ValueWrapper cached = getCache().get(urlPath);
         if (cached != null) {
             return cached.get();
