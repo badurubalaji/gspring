@@ -16,7 +16,7 @@ Run from the root of sample code
 mvn jetty:run-war
 }}}
 
-4. Open http://localhost:8080/rpc-sample
+4. Open http://localhost:8080/rpc-sample/index.htm
 
 ==Request Factory approach==
 1. Find the "DynaTableRf" sample in GWT SDK for 2.5 version (2.5 uses maven to assemble) by http://google-web-toolkit.googlecode.com/svn/releases/2.5/samples/dynatablerf
