@@ -2,7 +2,8 @@ package org.gspring.mvc.sample.application.server;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import org.gspring.mvc.rpc.RpcGwtHandlerMapping;
-import org.springframework.aop.support.AopUtils;
+import org.springframework.aop.Advisor;
+import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.filter.GenericFilterBean;
@@ -17,9 +18,8 @@ import java.io.IOException;
 public class SessionExpiredFilterBean extends GenericFilterBean {
     @Resource
     private RpcGwtHandlerMapping rpcGwtHandlerMapping;
-
     @Resource
-    private SessionExpiredInterceptor sessionExpiredInterceptor;
+    private Advisor sessionExpiredExceptionAdvisor;
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
@@ -45,9 +45,13 @@ public class SessionExpiredFilterBean extends GenericFilterBean {
             // creating the proxy on the fly takes some time
             Object handler = rpcGwtHandlerMapping.lookupHandler(httpServletRequest.getRequestURI(), httpServletRequest);
 
-            Object proxy = sessionExpiredInterceptor.newInstance(AopUtils.getTargetClass(handler));
+            ProxyFactory pf = new ProxyFactory();
+            pf.setProxyTargetClass(true);
+            pf.setTarget(handler);
+            pf.addAdvisor(sessionExpiredExceptionAdvisor);
+            pf.setFrozen(true);
 
-            RemoteServiceServlet rpcServlet = new RemoteServiceServlet(proxy) {
+            RemoteServiceServlet rpcServlet = new RemoteServiceServlet(pf.getProxy()) {
                 @Override
                 public ServletContext getServletContext() {
                     return SessionExpiredFilterBean.this.getServletContext();
