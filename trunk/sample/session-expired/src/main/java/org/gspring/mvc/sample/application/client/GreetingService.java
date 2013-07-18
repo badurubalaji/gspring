@@ -2,9 +2,9 @@ package org.gspring.mvc.sample.application.client;
 
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
-import org.gspring.mvc.sample.application.shared.security.AppSecurityException;
+import org.gspring.mvc.sample.application.shared.security.ApplicationException;
 
 @RemoteServiceRelativePath("greet/greetingService.gwt")
 public interface GreetingService extends RemoteService {
-	String greetServer(String name) throws AppSecurityException;
+	String greetServer(String name) throws ApplicationException;
 }
