@@ -1,0 +1,1 @@
+GWT and Spring MVC integration
